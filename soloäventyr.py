@@ -12,7 +12,7 @@ def slow_print(text):
         time.sleep(0.03)
     print()
 menu = True
-introduktion = False
+mellansekvens_1 = False
 spelet_körs = False
 
 
@@ -23,7 +23,7 @@ while menu:
     menu_val = input("Vad vill du göra: ")
     if menu_val == "1":
         slow_print("Startar spelet...")
-        introduktion = True
+        mellansekvens_1 = True
         menu = False
     elif menu_val == "2":
         slow_print("Lämnar spelet...")
@@ -32,16 +32,21 @@ while menu:
         slow_print("Ogiltigt, försök igen.")
         continue
 
-while introduktion:
-    slow_print("Du hittar dig själv inne i en cell med en säng, en papperskorg, ett fönster \n1och en sink, dörren är låst men den har ett nyckelhål, hitta ett sätt att fly.")
+while mellansekvens_1:
+    slow_print("Du hittar dig själv inne i en cell med en säng, en papperskorg, ett fönster\noch en sink, dörren är låst men den har ett nyckelhål, hitta ett sätt att fly.")
     spelet_körs = True
-    introduktion = False
+    mellansekvens_1 = False
 
-nyckel = False
+
+def mellansekvens_den_andra():
+    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och \ndu kan inte gå förbi utan att bli upptäckt.")
+
+mellansekvens_den_andra()
 
 # RUM 1
-def cellen(rum):
+def cell(rum):
     spel = True
+    nyckel = False
     
     while spel:
         slow_print("1. Kolla under sängen\n2. Kolla in i papperskorgen\n3. Kolla på fönstret\n4. Kolla in i sinken\n5. Öppna dörren")
@@ -54,15 +59,16 @@ def cellen(rum):
         elif cell_val == "5" and nyckel == False:
             slow_print("Dörren är låst.")
         elif cell_val == "5" and nyckel == True:
-            slow_print("Du öppnar dörren med nyckeln.")
-            rum = "rum_2"
+            slow_print("Du öppnar dörren med nyckeln och smitter förbi...")
+            rum = "korridor"
+            
             return rum
         else:
             slow_print("Ogiltigt, försök igen.")
             continue
 
 # RUM 2
-def rum_2(rum):
+def korridor(rum):
     print("Du är i rum 2")
     rum = "slut"
     return rum
@@ -70,8 +76,8 @@ def rum_2(rum):
 # Spel loop
 while (spelet_körs == True):
     if (rum == "cellen"):
-       rum = cellen(rum)
-    elif (rum == "rum_2"):
-       rum = rum_2(rum)
+       rum = cell(rum)
+    elif (rum == "korridor"):
+       rum = korridor(rum)
     elif (rum == "slut"):
         break
