@@ -4,7 +4,7 @@ import time
 # VARIABLER I SPELET
 # rum håller reda på vilket rum som spelaren är i
 # spelet starta i cellen
-rum = "cellen"
+rum = "cell"
 
 def slow_print(text):
     for char in text:
@@ -37,11 +37,8 @@ while mellansekvens_1:
     spelet_körs = True
     mellansekvens_1 = False
 
-
-def mellansekvens_den_andra():
-    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och \ndu kan inte gå förbi utan att bli upptäckt.")
-
-mellansekvens_den_andra()
+def mellansekvens_2():
+    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och \ndu kan inte gå förbi utan att bli upptäckt och du måste göra något .")
 
 # RUM 1
 def cell(rum):
@@ -49,8 +46,7 @@ def cell(rum):
     nyckel = False
     
     while spel:
-        slow_print("1. Kolla under sängen\n2. Kolla in i papperskorgen\n3. Kolla på fönstret\n4. Kolla in i sinken\n5. Öppna dörren")
-        cell_val = input("Vad vill du göra: ")
+        cell_val = input("1. Kolla under sängen\n2. Kolla in i papperskorgen\n3. Kolla på fönstret\n4. Kolla in i sinken\n5. Öppna dörren\nVad vill du göra: ")
         if cell_val == "1" or cell_val == "2" or cell_val == "3":
             slow_print("Du hittar inget.")
         elif cell_val == "4":
@@ -60,8 +56,8 @@ def cell(rum):
             slow_print("Dörren är låst.")
         elif cell_val == "5" and nyckel == True:
             slow_print("Du öppnar dörren med nyckeln och smitter förbi...")
+            mellansekvens_2()
             rum = "korridor"
-            
             return rum
         else:
             slow_print("Ogiltigt, försök igen.")
@@ -69,13 +65,11 @@ def cell(rum):
 
 # RUM 2
 def korridor(rum):
-    print("Du är i rum 2")
-    rum = "slut"
-    return rum
+    korridor_val = input("1. ")
 
 # Spel loop
 while (spelet_körs == True):
-    if (rum == "cellen"):
+    if (rum == "cell"):
        rum = cell(rum)
     elif (rum == "korridor"):
        rum = korridor(rum)
