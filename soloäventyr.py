@@ -38,7 +38,7 @@ while mellansekvens_1:
     mellansekvens_1 = False
 
 def mellansekvens_2():
-    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och \ndu kan inte gå förbi utan att bli upptäckt och du måste göra något .")
+    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och \ndu kan inte gå förbi utan att bli upptäckt.")
 
 # RUM 1
 def cell(rum):
@@ -65,7 +65,17 @@ def cell(rum):
 
 # RUM 2
 def korridor(rum):
-    korridor_val = input("1. ")
+    spel = True
+    vakt_borta = False
+    disraktion = False
+
+    while spel:
+        korridor_val = input("1. Smyg förbi\n2. Leta efter något i marken\n3. Vänta\n4. Distrahera vakten\nVad vill du göra: ")
+        if korridor == "1" and vakt_borta == False:
+            slow_print("Vakten ser dig och fångar dig, han drar dig tillbaka till din cell")
+            rum = "cell"
+            return rum
+        elif 
 
 # Spel loop
 while (spelet_körs == True):
