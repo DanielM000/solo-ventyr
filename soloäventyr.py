@@ -35,7 +35,10 @@ def mellansekvens_1():
     slow_print("Du befinner dig själv inne i en cell med en säng, en papperskorg, ett fönster\noch en sink, dörren är låst men den har ett nyckelhål, hitta ett sätt att fly.")
 
 def mellansekvens_2():
-    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och \ndu kan inte gå förbi utan att bli upptäckt.")
+    slow_print("Du smyger framåt tills du närmar en korridor, plötsligt ser du en vakt och\ndu kan inte gå förbi utan att bli upptäckt.")
+
+def mellansekvens_3():
+    slow_print("Du fortsätter smygga fram i korridoren tills du ser två vägar, en till vänster\noch en till höger.")
 
 # RUM 1
 def cell(rum):
@@ -77,7 +80,7 @@ def korridor(rum):
             return rum
         elif korridor_val == "1" and vakt_borta == True:
             slow_print("Du smitter genom korridoren...")
-            rum = "slut"
+            rum = "vägar"
             return rum
         elif korridor_val == "2" and distraktion == False:
             slow_print("Du hittar en sten.")
@@ -95,11 +98,35 @@ def korridor(rum):
             slow_print("Ogiltigt, försök igen.")
             continue
 
+# RUM 3
+def vägar(rum):
+    spel = True
+    mellansekvens_3()
+
+    while spel:
+        vägar_val = input("1. Gå vänster\n2. Gå höger\nVad vill du göra: ")
+        if vägar_val == "1":
+            slow_print("Du går vänster...")
+            rum = "slut"
+            return rum
+        elif vägar_val == "2":
+            slow_print("Du går höger...")
+            rum = "slut"
+            return rum
+        else:
+            slow_print("Ogiltigt, försök igen.")
+            continue
+
+#RUM 4
+
+
 # Spel loop
 while (spelet_körs == True):
     if (rum == "cell"):
        rum = cell(rum)
     elif (rum == "korridor"):
        rum = korridor(rum)
+    elif (rum == "vägar"):
+        rum = vägar(rum)
     elif (rum == "slut"):
         break
