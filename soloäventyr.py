@@ -125,7 +125,7 @@ def vägar(rum):
         vägar_val = input("1. Gå vänster\n2. Gå höger\nVad vill du göra: ")
         if vägar_val == "1":
             slow_print("Du går vänster...")
-            rum = "slut"
+            rum = "kod"
             return rum
         elif vägar_val == "2":
             slow_print("Du går höger...")
@@ -135,7 +135,7 @@ def vägar(rum):
             slow_print("Ogiltigt, försök igen.")
             continue
 
-# RUM 4 INTE KLAR
+# RUM 4
 def hund(rum):
     spel = True
     hund_borta = False
@@ -160,7 +160,7 @@ def hund(rum):
         elif hund_val == "3" and distraktion == False and hund_borta == False:
             slow_print("Du har ingeting att distrahera med.")
         elif hund_val == "3" and distraktion == True and hund_borta == False:
-            boll_kast: input("1. Kasta bollen kort fram\n2. Kasta bollen långt fram\nVad vill du göra: ")
+            boll_kast = input("1. Kasta bollen kort fram\n2. Kasta bollen långt fram\nVad vill du göra: ")
             if boll_kast == "1":
                 slow_print("Hunden går fram, tar bollen och går iväg med den.")
                 hund_borta = True
@@ -172,10 +172,16 @@ def hund(rum):
                 slow_print("Ogiltigt, försök igen.")
                 continue
         elif hund_val == "3" and distraktion == True and hund_borta == True:
-            slow_print("Vakten är redan borta.")
+            slow_print("Hunden är redan borta.")
         else:
             slow_print("Ogiltigt, försök igen.")
             continue
+
+# RUM 5 INTE KLAR
+def kod(rum):
+    spel = True
+    dörr_öppen = False
+    
 
 # Spel loop
 while (spelet_körs == True):
@@ -187,5 +193,7 @@ while (spelet_körs == True):
         rum = vägar(rum)
     elif (rum == "hund"):
         rum = hund(rum)
+    elif (rum == "kod"):
+        rum = kod(rum)
     elif (rum == "slut"):
         break
