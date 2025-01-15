@@ -58,6 +58,9 @@ def mellansekvens_3():
 def mellansekvens_4():
     slow_print("Du närmar dig ett rum men plötsligt ser du en hund som vaktar en dörr,\ndu kan inte gå förbi utan att bli upptäckt.")
 
+def mellansekvens_5():
+    slow_print("Du närmar dig ett rum med en dörr men dörren är låst, du behöver skriva \nin rätt tre siffrig kod, annars så går alarmet efter tre fel försök.")
+
 # RUM 1
 def cell(rum):
     spel = True
@@ -181,7 +184,11 @@ def hund(rum):
 def kod(rum):
     spel = True
     dörr_öppen = False
-    
+    alarm = 0
+    mellansekvens_5()
+
+    while spel:
+        kod_val = input("1. Skriv in koden\n2. ")
 
 # Spel loop
 while (spelet_körs == True):
