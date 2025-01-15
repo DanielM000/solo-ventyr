@@ -4,47 +4,13 @@ import time
 # VARIABLER I SPELET
 # rum håller reda på vilket rum som spelaren är i
 # spelet starta i cellen
-rum = "cell"
+rum = "meny"
 
 def slow_print(text):
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.03)
     print()
-menu = True
-spelet_körs = False
-
-
-
-
-while menu:
-    slow_print("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner")
-    menu_val = input("Vad vill du göra: ")
-    if menu_val == "1":
-        slow_print("Startar spelet...")
-        spelet_körs = True
-        menu = False
-    elif menu_val == "2":
-        slow_print("Lämnar spelet...")
-        menu = False
-    elif menu_val == "3":
-        print("\n")
-        filnamn = "readme.txt"
-
-        try:
-            with open(filnamn, "r", encoding="utf-8") as fil:
-                innehål = fil.read()
-                print(innehål)
-                input("\nTryck på valfri tangent")
-        except FileNotFoundError:
-            print(f"Filen {filnamn} kunde inte hittas")
-            input("\nTryck på valfri tangent")
-        except Exception as e:
-            print(f"Ett fel inträffade: {e}")
-            input("\nTryck på valfri tangent")
-    else:
-        slow_print("Ogiltigt, försök igen.")
-        continue
 
 def mellansekvens_1():
     slow_print("Du befinner dig själv inne i en cell med en säng, en papperskorg, ett fönster\noch en sink, dörren är låst men den har ett nyckelhål, hitta ett sätt att fly.")
@@ -79,7 +45,7 @@ def cell(rum):
         elif cell_val == "5" and nyckel == False:
             slow_print("Dörren är låst.")
         elif cell_val == "5" and nyckel == True:
-            slow_print("Du öppnar dörren med nyckeln och smitter förbi...")
+            slow_print("Du öppnar dörren med nyckeln och smiter förbi...")
             rum = "korridor"
             return rum
         else:
@@ -188,19 +154,61 @@ def kod(rum):
     mellansekvens_5()
 
     while spel:
-        kod_val = input("1. Skriv in koden\n2. ")
+        kod_val = input("1. Skriv in koden\n2. Gå tillbaka\nVad vill du göra: ")
 
 # Spel loop
-while (spelet_körs == True):
-    if (rum == "cell"):
-       rum = cell(rum)
-    elif (rum == "korridor"):
-       rum = korridor(rum)
-    elif (rum == "vägar"):
-        rum = vägar(rum)
-    elif (rum == "hund"):
-        rum = hund(rum)
-    elif (rum == "kod"):
-        rum = kod(rum)
-    elif (rum == "slut"):
-        break
+def spel_loop(rum):
+    spelet_körs = True
+    
+    while (spelet_körs == True):
+        if (rum == "cell"):
+            rum = cell(rum)
+        elif (rum == "korridor"):
+            rum = korridor(rum)
+        elif (rum == "vägar"):
+            rum = vägar(rum)
+        elif (rum == "hund"):
+            rum = hund(rum)
+        elif (rum == "kod"):
+            rum = kod(rum)
+        elif (rum == "slut_1"):
+            break
+        elif (rum == "slut_2"):
+            break
+        elif (rum == "meny"):
+            rum = meny(rum)
+
+def meny(rum):
+    menu = True
+    while menu:
+        slow_print("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner")
+        menu_val = input("Vad vill du göra: ")
+        if menu_val == "1":
+            slow_print("Startar spelet...")
+            rum = "cell"
+            return rum
+            
+
+        elif menu_val == "2":
+            slow_print("Lämnar spelet...")
+            menu = False
+        elif menu_val == "3":
+            print("\n")
+            filnamn = "readme.txt"
+
+            try:
+                with open(filnamn, "r", encoding="utf-8") as fil:
+                    innehål = fil.read()
+                    print(innehål)
+                    input("\nTryck på valfri tangent")
+            except FileNotFoundError:
+                print(f"Filen {filnamn} kunde inte hittas")
+                input("\nTryck på valfri tangent")
+            except Exception as e:
+                print(f"Ett fel inträffade: {e}")
+                input("\nTryck på valfri tangent")
+        else:
+            slow_print("Ogiltigt, försök igen.")
+            continue
+
+spel_loop(rum)
