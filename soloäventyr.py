@@ -5,6 +5,9 @@ import time
 # rum håller reda på vilket rum som spelaren är i
 # spelet starta i cellen
 rum = "meny"
+letråd_1 = False
+letråd_2 = False
+letråd_3 = False
 
 def slow_print(text):
     for char in text:
@@ -35,7 +38,12 @@ def cell(rum):
     
     while spel:
         cell_val = input("1. Kolla under sängen\n2. Kolla in i papperskorgen\n3. Kolla på fönstret\n4. Kolla in i sinken\n5. Öppna dörren\nVad vill du göra: ")
-        if cell_val == "1" or cell_val == "2" or cell_val == "3":
+        if cell_val == "1" or cell_val == "3":
+            slow_print("Du hittar inget.")
+        elif cell_val == "2" and letråd_1 == False:
+            slow_print("Du hittar ett papper, det står: Hur många färger har en regnbåge?")
+            letråd_1 = True
+        elif cell_val == "2" and letråd_1 == True:
             slow_print("Du hittar inget.")
         elif cell_val == "4" and nyckel == False:
             slow_print("Du hittar en nyckel.")
@@ -72,7 +80,10 @@ def korridor(rum):
         elif korridor_val == "2" and distraktion == False:
             slow_print("Du hittar en sten.")
             distraktion = True
-        elif korridor_val == "2" and distraktion == True:
+        elif korridor_val == "2" and distraktion == True and letråd_2 == False:
+            slow_print("Du hittar ett papper, det står: Hur många ben har en spindel?")
+            letråd_2 = True
+        elif korridor_val == "2" and distraktion == True and letråd_2 == True:
             slow_print("Du hittar inget.")
         elif korridor_val == "3" and distraktion == False and vakt_borta == False:
             slow_print("Du har ingeting att distrahera med.")
@@ -119,12 +130,15 @@ def hund(rum):
             return rum
         elif hund_val == "1" and hund_borta == True:
             slow_print("Du går till dörren utan problem, du öppnar dörren...")
-            rum = "slut"
+            rum = "slut_1"
             return rum
         elif hund_val == "2" and distraktion == False:
             slow_print("Du hittar en liten boll.")
             distraktion = True
-        elif hund_val == "2" and distraktion == True:
+        elif hund_val == "2" and distraktion == True and letråd_3 == False:
+            slow_print("Du hittar ett papper, det står: Hur många hjärtan har en bläckfisk?")
+            letråd_3 = True
+        elif hund_val == "2" and distraktion == True and letråd_3 == True:
             slow_print("Du hittar inget.")
         elif hund_val == "3" and distraktion == False and hund_borta == False:
             slow_print("Du har ingeting att distrahera med.")
@@ -146,15 +160,41 @@ def hund(rum):
             slow_print("Ogiltigt, försök igen.")
             continue
 
-# RUM 5 INTE KLAR
+# RUM 5
 def kod(rum):
     spel = True
-    dörr_öppen = False
     alarm = 0
     mellansekvens_5()
 
     while spel:
-        kod_val = input("1. Skriv in koden\n2. Gå tillbaka\nVad vill du göra: ")
+        kod_val = input("1. Skriv in koden\n2. Läs letrådarna\n3. Gå tillbaka\nVad vill du göra: ")
+        if kod_val == "1":
+            skriv_kod == input("Skriv koden: ")
+            if skriv_kod == "783":
+                slow_print("Du skriver rätt kod, du öppnar dörren...")
+                rum = "slut_2"
+                return rum
+            else:
+                slow_print("Du skriver fel kod.")
+                alarm += 1
+        elif kod_val == "2":
+            if letråd_1 == True:
+                slow_print("Hur många färger har en regnbåge?")
+            if letråd_2 == True:
+                slow_print("Hur många ben har en spindel?")
+            if letråd_3 == True:
+                slow_print("Hur många hjärtan har en bläckfisk?")
+        elif kod_val == "3":
+            slow_print("Du går tillbaka till förra rummet...")
+            rum = "vägar"
+            return rum
+        elif alarm == 3:
+            slow_print("Alarmet går och vakten kommer, han drar dig tillbaka till din cell...")
+            rum = "cell"
+            return rum
+        else:
+            slow_print("Ogiltigt, försök igen.")
+            continue
 
 # Spel loop
 def spel_loop(rum):
