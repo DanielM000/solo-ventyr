@@ -31,7 +31,7 @@ def mellansekvens_5():
     slow_print("Du närmar dig ett rum med en dörr men dörren är låst, du behöver skriva \nin rätt tre siffrig kod, annars så går alarmet efter tre fel försök.")
 
 # RUM 1
-def cell(rum):
+def cell(rum, letråd_1):
     spel = True
     nyckel = False
     mellansekvens_1()
@@ -55,13 +55,13 @@ def cell(rum):
         elif cell_val == "5" and nyckel == True:
             slow_print("Du öppnar dörren med nyckeln och smiter förbi...")
             rum = "korridor"
-            return rum
+            return rum, letråd_1
         else:
             slow_print("Ogiltigt, försök igen.")
             continue
 
 # RUM 2
-def korridor(rum):
+def korridor(rum, letråd_2):
     spel = True
     vakt_borta = False
     distraktion = False
@@ -76,7 +76,7 @@ def korridor(rum):
         elif korridor_val == "1" and vakt_borta == True:
             slow_print("Du smitter genom korridoren...")
             rum = "vägar"
-            return rum
+            return rum, letråd_2
         elif korridor_val == "2" and distraktion == False:
             slow_print("Du hittar en sten.")
             distraktion = True
@@ -116,7 +116,7 @@ def vägar(rum):
             continue
 
 # RUM 4
-def hund(rum):
+def hund(rum, letråd_3):
     spel = True
     hund_borta = False
     distraktion = False
@@ -131,7 +131,7 @@ def hund(rum):
         elif hund_val == "1" and hund_borta == True:
             slow_print("Du går till dörren utan problem, du öppnar dörren...")
             rum = "slut_1"
-            return rum
+            return rum, letråd_3
         elif hund_val == "2" and distraktion == False:
             slow_print("Du hittar en liten boll.")
             distraktion = True
@@ -202,13 +202,13 @@ def spel_loop(rum):
     
     while (spelet_körs == True):
         if (rum == "cell"):
-            rum = cell(rum)
+            rum = cell(rum, letråd_1)
         elif (rum == "korridor"):
-            rum = korridor(rum)
+            rum = korridor(rum, letråd_2)
         elif (rum == "vägar"):
             rum = vägar(rum)
         elif (rum == "hund"):
-            rum = hund(rum)
+            rum = hund(rum, letråd_3)
         elif (rum == "kod"):
             rum = kod(rum)
         elif (rum == "slut_1"):
