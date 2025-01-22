@@ -204,7 +204,7 @@ def kod(rum, letråd_1, letråd_2, letråd_3):
             slow_print("Du går tillbaka till förra rummet...")
             rum = "vägar"
             break
-        elif alarm == 3:
+        if alarm == 3:
             slow_print("Alarmet går och vakten kommer, han drar dig tillbaka till din cell...")
             rum = "cell"
             break
@@ -212,6 +212,9 @@ def kod(rum, letråd_1, letråd_2, letråd_3):
             slow_print("Ogiltigt, försök igen.")
             continue
     return rum, letråd_1, letråd_2, letråd_3
+
+def slut_1():
+    slow_print("")
 
 # Spel loop
 def spel_loop(rum, letråd_1, letråd_2, letråd_3):
