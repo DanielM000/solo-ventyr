@@ -240,6 +240,7 @@ def spel_loop(rum, letråd_1, letråd_2, letråd_3):
 
 def meny(rum):
     menu = True
+    readme = open("readme.txt", "r", encoding = "utf-8")
     while menu:
         slow_print("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner")
         menu_val = input("Vad vill du göra: ")
@@ -253,20 +254,7 @@ def meny(rum):
             slow_print("Lämnar spelet...")
             menu = False
         elif menu_val == "3":
-            print("\n")
-            filnamn = "readme.txt"
-
-            try:
-                with open(filnamn, "r", encoding="utf-8") as fil:
-                    innehål = fil.read()
-                    print(innehål)
-                    input("\nTryck på valfri tangent")
-            except FileNotFoundError:
-                print(f"Filen {filnamn} kunde inte hittas")
-                input("\nTryck på valfri tangent")
-            except Exception as e:
-                print(f"Ett fel inträffade: {e}")
-                input("\nTryck på valfri tangent")
+            slow_print(readme.read())
         else:
             slow_print("Ogiltigt, försök igen.")
             continue
