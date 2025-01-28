@@ -30,6 +30,12 @@ def mellansekvens_4():
 def mellansekvens_5():
     slow_print("Du närmar dig ett rum med en dörr men dörren är låst, du behöver skriva \nin rätt tre siffrig kod, annars så går alarmet efter tre fel försök.")
 
+def slut_1():
+    slow_print("Du är utanför fängelset nu och springer så snabbt du kan men du blir träffad\nav en prickskytt, du blöder i marken och dör.\n \nSlut 1")
+
+def slut_2():
+    slow_print("")
+
 # RUM 1
 def cell(rum, letråd_1, letråd_2, letråd_3):
     spel = True
@@ -232,7 +238,7 @@ def spel_loop(rum, letråd_1, letråd_2, letråd_3):
         elif (rum == "kod"):
             rum, letråd_1, letråd_2, letråd_3 = kod(rum, letråd_1, letråd_2, letråd_3)
         elif (rum == "slut_1"):
-            break
+            slut_1()
         elif (rum == "slut_2"):
             break
         elif (rum == "meny"):
