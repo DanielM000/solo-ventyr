@@ -30,12 +30,6 @@ def mellansekvens_4():
 def mellansekvens_5():
     slow_print("Du närmar dig ett rum med en dörr men dörren är låst, du behöver skriva \nin rätt tre siffrig kod, annars så går alarmet efter tre fel försök.")
 
-def slut_1():
-    slow_print("Du är utanför fängelset nu och springer så snabbt du kan men du blir träffad\nav en prickskytt, du blöder i marken och dör.\n \nSlut 1")
-
-def slut_2():
-    slow_print("")
-
 # RUM 1
 def cell(rum, letråd_1, letråd_2, letråd_3):
     spel = True
@@ -180,6 +174,8 @@ def hund(rum, letråd_1, letråd_2, letråd_3):
         else:
             slow_print("Ogiltigt, försök igen.")
             continue
+    print (f"\nInnan vi går till spelloopen är rum: {rum}")
+    input("Tryck på enter")
     return rum, letråd_1, letråd_2, letråd_3
 
 # RUM 5
@@ -219,9 +215,6 @@ def kod(rum, letråd_1, letråd_2, letråd_3):
             continue
     return rum, letråd_1, letråd_2, letråd_3
 
-def slut_1():
-    slow_print("")
-
 # Spel loop
 def spel_loop(rum, letråd_1, letråd_2, letråd_3):
     spelet_körs = True
@@ -238,9 +231,11 @@ def spel_loop(rum, letråd_1, letråd_2, letråd_3):
         elif (rum == "kod"):
             rum, letråd_1, letråd_2, letråd_3 = kod(rum, letråd_1, letråd_2, letråd_3)
         elif (rum == "slut_1"):
-            slut_1()
+            slow_print("Du är utanför fängelset nu och du springer så snabbt du kan men du blir träffad\nav en prickskytt, du ligger i marken och dör.\n \nSlut 1")
+            spelet_körs = False
         elif (rum == "slut_2"):
-            break
+            slow_print("Du är utanför fängelset nu, du hittar en öppen bil och gör iväg från fängelset\n \nSlut 2")
+            spelet_körs = False
         elif (rum == "meny"):
             rum = meny(rum)
 
@@ -248,7 +243,7 @@ def meny(rum):
     menu = True
     readme = open("readme.txt", "r", encoding = "utf-8")
     while menu:
-        slow_print("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner")
+        print("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner")
         menu_val = input("Vad vill du göra: ")
         if menu_val == "1":
             slow_print("Startar spelet...")
@@ -260,7 +255,7 @@ def meny(rum):
             slow_print("Lämnar spelet...")
             menu = False
         elif menu_val == "3":
-            slow_print(readme.read())
+            print(readme.read())
         else:
             slow_print("Ogiltigt, försök igen.")
             continue
