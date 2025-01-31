@@ -37,7 +37,7 @@ def cell(rum, letråd_1, letråd_2, letråd_3):
     mellansekvens_1()
     
     while spel:
-        cell_val = input("1. Kolla under sängen\n2. Kolla in i papperskorgen\n3. Kolla på fönstret\n4. Kolla in i sinken\n5. Öppna dörren\nVad vill du göra: ")
+        cell_val = input("1. Kolla under sängen\n2. Kolla in i papperskorgen\n3. Kolla på fönstret\n4. Kolla in i sinken\n5. Öppna dörren\nVad vill du göra:\n")
         if cell_val == "1" or cell_val == "3":
             slow_print("Du hittar inget.\n")
         elif cell_val == "2" and letråd_1 == False:
@@ -69,7 +69,7 @@ def korridor(rum, letråd_1, letråd_2, letråd_3):
     mellansekvens_2()
 
     while spel:
-        korridor_val = input("1. Smyg förbi\n2. Leta efter något i marken\n3. Distrahera vakten\n4. Gå tillbaka\nVad vill du göra: ")
+        korridor_val = input("1. Smyg förbi\n2. Leta efter något i marken\n3. Distrahera vakten\n4. Gå tillbaka\nVad vill du göra:\n")
         if korridor_val == "1" and vakt_borta == False:
             slow_print("Vakten ser dig och fångar dig, han drar dig tillbaka till din cell...\n")
             rum = "cell"
@@ -108,7 +108,7 @@ def vägar(rum, letråd_1, letråd_2, letråd_3):
     mellansekvens_3()
 
     while spel:
-        vägar_val = input("1. Gå vänster\n2. Gå höger\n3. Gå tillbaka\nVad vill du göra: ")
+        vägar_val = input("1. Gå vänster\n2. Gå höger\n3. Gå tillbaka\nVad vill du göra:\n")
         if vägar_val == "1":
             slow_print("Du går vänster...\n")
             rum = "kod"
@@ -134,7 +134,7 @@ def hund(rum, letråd_1, letråd_2, letråd_3):
     mellansekvens_4()
 
     while spel:
-        hund_val = input("1. Gå fram\n2. Leta efter något i marken\n3. Distrahera hunden\n4. Gå tillbaka\nVad vill du göra: ")
+        hund_val = input("1. Gå fram\n2. Leta efter något i marken\n3. Distrahera hunden\n4. Gå tillbaka\nVad vill du göra:\n")
         if hund_val == "1" and hund_borta == False:
             slow_print("Hunden ser dig och biter dig i benen, vakten kommer och han drar dig tillbaka till din cell...\n")
             rum = "cell"
@@ -154,7 +154,7 @@ def hund(rum, letråd_1, letråd_2, letråd_3):
         elif hund_val == "3" and distraktion == False and hund_borta == False:
             slow_print("Du har ingeting att distrahera med.\n")
         elif hund_val == "3" and distraktion == True and hund_borta == False:
-            boll_kast = input("1. Kasta bollen kort fram\n2. Kasta bollen långt fram\nVad vill du göra: ")
+            boll_kast = input("1. Kasta bollen kort fram\n2. Kasta bollen långt fram\nVad vill du göra:\n")
             if boll_kast == "1":
                 slow_print("Hunden går fram, tar bollen och går iväg med den.\n")
                 hund_borta = True
@@ -183,9 +183,9 @@ def kod(rum, letråd_1, letråd_2, letråd_3):
     mellansekvens_5()
 
     while spel:
-        kod_val = input("1. Skriv in koden\n2. Läs letrådarna\n3. Gå tillbaka\nVad vill du göra: ")
+        kod_val = input("1. Skriv in koden\n2. Läs letrådarna\n3. Gå tillbaka\nVad vill du göra:\n")
         if kod_val == "1":
-            skriv_kod = input("Skriv koden: ")
+            skriv_kod = input("Skriv koden:\n")
             if skriv_kod == "783":
                 slow_print("Du skriver rätt kod, du öppnar dörren...\n")
                 rum = "slut_2"
@@ -241,13 +241,11 @@ def meny(rum):
     menu = True
     readme = open("soloäventyr/readme.txt", "r", encoding = "utf-8")
     while menu:
-        menu_val = input("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner\nVad vill du göra: ")
+        menu_val = input("1. Starta spelet\n2. Avsluta\n3. Visa instruktioner\nVad vill du göra:\n")
         if menu_val == "1":
             slow_print("Startar spelet...\n")
             rum = "cell"
             return rum
-            
-
         elif menu_val == "2":
             slow_print("Lämnar spelet...")
             menu = False
