@@ -9,14 +9,14 @@ letråd_1 = False
 letråd_2 = False
 letråd_3 = False
 
-#slow print
+# Slow print
 def slow_print(text):
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.03)
     print()
 
-#mellansekvenser
+# Mellansekvenser
 def mellansekvens_1():
     slow_print("Du befinner dig själv inne i en cell med en säng, en papperskorg, ett fönster\noch en sink, dörren är låst men den har ett nyckelhål, hitta ett sätt att fly.\n")
 
@@ -239,7 +239,7 @@ def spel_loop(rum, letråd_1, letråd_2, letråd_3):
         elif (rum == "meny"):
             rum = meny(rum)
 
-#meny
+# Meny
 def meny(rum):
     menu = True
     readme = open("soloäventyr/readme.txt", "r", encoding = "utf-8")
